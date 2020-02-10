@@ -9,9 +9,11 @@ function start() {
     while(isNaN(money) || money == "" || money == null) {
         money = +prompt("Ваш бюджет на месяц?", '');
     }
-}
+}var name = 'Bob';
 
 start();
+
+console.log(0 || '' || [] || true)
 
 let appData = {
     budjet: money,
