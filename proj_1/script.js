@@ -13,8 +13,6 @@ function start() {
 
 start();
 
-console.log(0 || '' || [] || true)
-
 let appData = {
     budjet: money,
     timeData: time,
@@ -94,3 +92,5 @@ let appData = {
         } 
     }
 }
+
+appData.chooseIncome();
