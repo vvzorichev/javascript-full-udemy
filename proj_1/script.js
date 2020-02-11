@@ -26,7 +26,8 @@ let appData = {
                 ei_how_much = prompt("Во сколько обойдется?", '');
             
             if ( (typeof(expense_item)) === 'string' && (typeof(expense_item)) != null 
-                && (typeof(ei_how_much)) != null && expense_item != '' && ei_how_much != '' && expense_item.length < 50){
+                && (typeof(ei_how_much)) != null && expense_item != '' 
+                && ei_how_much != '' && expense_item.length < 50){
                 console.log("done");    
                 appData.expenses[expense_item] = ei_how_much;
             } else {
@@ -63,8 +64,7 @@ let appData = {
             let opt_expense_item = prompt("Статья необязательных расходов в этом месяце", '');
             
             if ( (typeof(opt_expense_item)) === 'string' && (typeof(opt_expense_item)) != null 
-                && opt_expense_item != '' && opt_expense_item.length < 50) {
-                console.log("done");    
+                && opt_expense_item != '' && opt_expense_item.length < 50) {   
                 appData.optionalExpenses[i] = opt_expense_item;
             } else {
                 i--;
@@ -83,7 +83,7 @@ let appData = {
         appData.income.sort();
 
         appData.income.forEach(function(items, index) {
-            console.log((index+1) + ": " + items);
+            alert("Способы доп. заработка: " + (index+1) + " - " + items);
         });
 
         console.log("Наша программа включает в себя данные: ");
