@@ -9,7 +9,7 @@ function start() {
     while(isNaN(money) || money == "" || money == null) {
         money = +prompt("Ваш бюджет на месяц?", '');
     }
-}var name = 'Bob';
+};
 
 start();
 

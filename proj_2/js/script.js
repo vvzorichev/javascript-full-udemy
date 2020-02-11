@@ -1,3 +1,5 @@
+'use strict';
+
 let menu = document.querySelector('.menu'),
     menuItem = document.querySelectorAll('.menu-item'),
     menuItemLi = document.createElement('li'),
