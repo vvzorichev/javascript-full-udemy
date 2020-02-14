@@ -22,7 +22,7 @@ window.addEventListener('DOMContentLoaded', function() {
         }
     }
 
-    info.addEventListener('click', function(event) {
+    info.addEventListener('click', function() {
         let target = event.target;
         if (target && target.classList.contains('info-header-tab')) {
             for (let i = 0; i < tab.length; i++) {
@@ -35,7 +35,7 @@ window.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-    let deadline = '2020-02-14';
+    let deadline = '2020-02-19';
 
     function getTimeRemaining(endtime) {
         let time = Date.parse(endtime) - Date.parse(new Date),
@@ -82,4 +82,41 @@ window.addEventListener('DOMContentLoaded', function() {
     };
 
     setClock('#timer', deadline);
+
+    // Modal
+
+    let more = document.querySelector('.more'),
+        overlay = document.querySelector('.overlay'),
+        close = document.querySelector('.popup-close'),
+        moreBtns = document.querySelectorAll('.description-btn');
+
+    moreBtns.forEach(function(item) {
+        item.addEventListener('click', function() {
+            console.log(this);
+            overlay.style.display = 'block';
+            this.classList.add('more-splash');
+            document.body.style.overflow = 'hidden';
+        });
+    });
+    // function addMoreListener() {
+    //     for (let i = 0; i < moreBtns.length; i++){
+    //         moreBtns[i].addEventListener('click', function() {
+    //                 overlay.style.display = 'block';
+    //                 this.classList.add('more-splash');
+    //                 document.body.style.overflow = 'hidden';
+    //         });
+    //     }
+    // };
+
+    more.addEventListener('click', function() {
+            overlay.style.display = 'block';
+            this.classList.add('more-splash');
+            document.body.style.overflow = 'hidden';
+        });
+
+    close.addEventListener('click', function() {
+        overlay.style.display = 'none';
+        more.classList.remove('more-splash');
+        document.body.style.overflow = '';
+    });
 });
