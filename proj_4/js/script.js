@@ -92,21 +92,11 @@ window.addEventListener('DOMContentLoaded', function() {
 
     moreBtns.forEach(function(item) {
         item.addEventListener('click', function() {
-            console.log(this);
             overlay.style.display = 'block';
             this.classList.add('more-splash');
             document.body.style.overflow = 'hidden';
         });
     });
-    // function addMoreListener() {
-    //     for (let i = 0; i < moreBtns.length; i++){
-    //         moreBtns[i].addEventListener('click', function() {
-    //                 overlay.style.display = 'block';
-    //                 this.classList.add('more-splash');
-    //                 document.body.style.overflow = 'hidden';
-    //         });
-    //     }
-    // };
 
     more.addEventListener('click', function() {
             overlay.style.display = 'block';
@@ -116,6 +106,9 @@ window.addEventListener('DOMContentLoaded', function() {
 
     close.addEventListener('click', function() {
         overlay.style.display = 'none';
+        moreBtns.forEach(function(item) {
+            moreBtns.classList.remove('more-splash');
+        });
         more.classList.remove('more-splash');
         document.body.style.overflow = '';
     });
