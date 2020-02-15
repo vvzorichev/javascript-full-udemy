@@ -46,12 +46,12 @@ window.addEventListener('DOMContentLoaded', () => {
             seconds = Math.floor((time / 1000) % 60),
             minutes = Math.floor((time / 1000 / 60) % 60),
             hours = Math.floor((time / 1000 / 60 / 60));
-        
+
         return {
-            'total' : time,
-            'seconds' : seconds,
-            'minutes' : minutes,
-            'hours' : hours
+            'total': time,
+            'seconds': seconds,
+            'minutes': minutes,
+            'hours': hours
         }
     };
 
@@ -65,7 +65,7 @@ window.addEventListener('DOMContentLoaded', () => {
             let timeToDeadline = getTimeRemaining(endtime);
 
             let addZero = (num) => {
-                if(num <= 9) {
+                if (num <= 9) {
                     return `0${num}`;
                 } else return num;
             };
@@ -94,7 +94,7 @@ window.addEventListener('DOMContentLoaded', () => {
         close = document.querySelector('.popup-close'),
         moreBtns = [more, ...document.querySelectorAll('.description-btn')];
 
-    moreBtns.forEach( (item) => {
+    moreBtns.forEach((item) => {
         item.addEventListener('click', () => {
             overlay.style.display = 'block';
             this.classList.add('more-splash');
@@ -104,7 +104,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     close.addEventListener('click', () => {
         overlay.style.display = 'none';
-        moreBtns.forEach( (item) => {
+        moreBtns.forEach((item) => {
             item.classList.remove('more-splash');
         });
         document.body.style.overflow = '';
@@ -134,28 +134,33 @@ window.addEventListener('DOMContentLoaded', () => {
             request.setRequestHeader('Content-Type', 'application/json; charset=utf-8');
 
             let formData = new FormData(item);
-            console.log(formData);
             let obj = {};
             formData.forEach((value, key) => {
                 obj[key] = value;
             });
-            let json = JSON.stringify(obj);
 
+            let json = JSON.stringify(obj);
             request.send(json);
 
-            request.addEventListener('readystatechange', () => {
-                if (request.readyState < 4) {
-                    statusMessage.textContent = message.loading;
-                } else if (request.readyState === 4 && request.status == 200) {
-                    statusMessage.textContent = message.succses;
-                } else {
-                    statusMessage.textContent = message.failure;
-                }
-            });
-
-            input.forEach((item) => {
-                item.value = '';
-            });
+            let postData = () => {
+                return new Promise((resolve, reject) => {
+                    request.addEventListener('readystatechange', () => {
+                        if (request.readyState < 4) {
+                            resolve();
+                        } else if (request.readyState === 4 && request.status == 200) {
+                            resolve();
+                        } else {
+                            reject();
+                        }
+                    });
+                });
+            };
+            
+            postData()
+                .then(() => statusMessage.textContent = message.loading)
+                .then(() => statusMessage.textContent = message.succses)
+                .catch(() => statusMessage.textContent = message.failure)
+                .then(input.forEach((item) => { item.value = '' }))
         });
     });
 });
