@@ -8,21 +8,15 @@ window.addEventListener('DOMContentLoaded', () => {
         info = document.querySelector('.info-header'),
         tabContent = document.querySelectorAll('.info-tabcontent');
 
-    let hideTabContent = (fromThis) => {
-        for (let i = fromThis; i < tabContent.length; i++) {
-            tabContent[i].classList.remove('show');
-            tabContent[i].classList.add('hide');
-        }
-    };
-
-    hideTabContent(1);
-
     let showTabContent = (forThis) => {
-        if (tabContent[forThis].classList.contains('hide')) {
-            tabContent[forThis].classList.remove('hide');
-            tabContent[forThis].classList.add('show');
-        }
+        tabContent.forEach((item) => {
+            item.classList.remove('show');
+            item.classList.add('hide');
+        });
+        tabContent[forThis].classList.add('show');
     }
+
+    showTabContent(0);
 
     info.addEventListener('click', () => {
         let target = event.target;
