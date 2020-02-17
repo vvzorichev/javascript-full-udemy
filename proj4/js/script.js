@@ -18,17 +18,14 @@ window.addEventListener('DOMContentLoaded', () => {
 
     showTabContent(0);
 
-    info.addEventListener('click', () => {
-        let target = event.target;
-        if (target && target.classList.contains('info-header-tab')) {
-            for (let i = 0; i < tab.length; i++) {
-                if (target == tab[i]) {
-                    hideTabContent(0);
-                    showTabContent(i);
-                    break;
-                }
-            }
-        }
+    info.addEventListener('click', (event) => {
+        if (event.target.classList.contains('info-header-tab')){
+            tab.forEach((item, index) => {
+                if (event.target == item) {
+                    showTabContent(index);
+                };
+            });
+        };
     });
 
     // Timer
