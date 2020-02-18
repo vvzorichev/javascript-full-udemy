@@ -1,4 +1,4 @@
-window.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('DOMContentLoaded', function () {
 
     'use strict';
 
@@ -7,7 +7,7 @@ window.addEventListener('DOMContentLoaded', () => {
     let tab = document.querySelectorAll('.info-header-tab'),
         info = document.querySelector('.info-header'),
         tabContent = document.querySelectorAll('.info-tabcontent');
-
+    
     let showTabContent = (forThis) => {
         tabContent.forEach((item) => {
             item.classList.remove('show');
@@ -30,7 +30,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // Timer
 
-    let deadline = '2020-02-19';
+    let deadline = '2019-02-19';
 
     let getTimeRemaining = (endtime) => {
         let time = Date.parse(endtime) - Date.parse(new Date),
@@ -75,7 +75,6 @@ window.addEventListener('DOMContentLoaded', () => {
 
         let timeInterval = setInterval(updateClock, 1000);
     };
-    
 
     setClock('#timer', deadline);
 
@@ -89,7 +88,7 @@ window.addEventListener('DOMContentLoaded', () => {
     moreBtns.forEach((item) => {
         item.addEventListener('click', () => {
             overlay.style.display = 'block';
-            this.classList.add('more-splash');
+            item.classList.add('more-splash');
             document.body.style.overflow = 'hidden';
         });
     });
@@ -102,7 +101,7 @@ window.addEventListener('DOMContentLoaded', () => {
         document.body.style.overflow = '';
     });
 
-    // Form
+    // Form Modal Window
 
     let message = {
         loading: 'Загрузка...',
@@ -152,7 +151,7 @@ window.addEventListener('DOMContentLoaded', () => {
                 .then(() => statusMessage.textContent = message.loading)
                 .then(() => statusMessage.textContent = message.succses)
                 .catch(() => statusMessage.textContent = message.failure)
-                .then(input.forEach((item) => { item.value = '' }))
+                .then(input.forEach((item) => { item.value = ''; }))
         });
     });
 
@@ -206,5 +205,41 @@ window.addEventListener('DOMContentLoaded', () => {
                 }
             });
         }
+    });
+
+    // Calculator
+
+    let persons = document.querySelectorAll('.counter-block-input')[0],
+        restDays = document.querySelectorAll('.counter-block-input')[1],
+        place = document.querySelector('#select'),
+        totalValue = document.querySelector('#total'),
+        personsSum = 0,
+        daysSum = 0,
+        placeCoef = 1,
+        total = 0;
+
+    let changeTotal = () => {
+        if (restDays.value == 0 || persons.value == 0) {
+            totalValue.textContent = 0;
+        } else {
+            total = (daysSum + personsSum) * 4000 * placeCoef;
+            totalValue.textContent = total;
+        }
+    };
+
+    persons.addEventListener('change', (event) => {
+        personsSum = +event.target.value;
+        changeTotal();
+    });
+
+    restDays.addEventListener('change', (event) => {
+        daysSum = +event.target.value;
+        changeTotal();
+    });
+
+    place.addEventListener('change', (event) => {
+        place = event.target;
+        placeCoef = +place.options[place.selectedIndex].value;
+        changeTotal();
     });
 });
