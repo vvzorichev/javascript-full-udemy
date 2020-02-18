@@ -75,6 +75,7 @@ window.addEventListener('DOMContentLoaded', () => {
 
         let timeInterval = setInterval(updateClock, 1000);
     };
+    
 
     setClock('#timer', deadline);
 
