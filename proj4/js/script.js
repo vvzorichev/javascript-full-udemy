@@ -201,7 +201,7 @@ window.addEventListener('DOMContentLoaded', () => {
         if (event.target.classList.contains('dot')) {
             dots.forEach((item, index) => {
                 if (event.target == item) {
-                    currentSlide(index + 1);
+                    currentSlide(index);
                 }
             });
         }
