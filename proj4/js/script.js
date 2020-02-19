@@ -16,8 +16,6 @@ window.addEventListener('DOMContentLoaded', () => {
         tabContent[forThis].classList.add('show');
     }
 
-    showTabContent(0);
-
     info.addEventListener('click', (event) => {
         if (event.target.classList.contains('info-header-tab')){
             tab.forEach((item, index) => {
